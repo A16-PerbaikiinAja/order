@@ -51,6 +51,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/notifications/**").permitAll()
                         .requestMatchers("/coupons/**").permitAll() //HAPUS INI NANTI
+                        .requestMatchers("/actuator/prometheus").permitAll()
+                        .requestMatchers("/prometheus").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

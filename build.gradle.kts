@@ -52,7 +52,8 @@ dependencies {
     implementation ("jakarta.validation:jakarta.validation-api:3.0.2")
 
     implementation("com.fasterxml.jackson.core:jackson-databind")
-
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
 }
 
 tasks.register<Test>("unitTest") {
