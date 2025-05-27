@@ -64,22 +64,14 @@ A successful response returns an HTTP 200 status. If the notification is not fou
 
 ---
 
-# PerbaikiinAja - Order Service
 
-This project is responsible for managing the full process of placing and handling repair service requests, from initial order creation to final completion. Users can place new repair orders, specifying item details, desired repairs, choosing a payment method, and optionally selecting their preferred technician. Technicians receive these orders, provide cost and time estimates, and update the order status as repairs progress. After technicians mark repairs as completed, users receive notifications and can view, manage, or delete these notifications to stay informed without clutter.
-
-## API Reference
-
----
-
-
-## Coupon API
+### Coupon Endpoints
 
 Endpoints for managing discount coupons: creation, retrieval, update, deletion, application, and previewing.
 
 ---
 
-### Create a Coupon
+#### Create a Coupon
 
 ```http
 POST /coupons
@@ -117,7 +109,7 @@ Status `201 Created`
 
 ---
 
-### Get All Coupons
+#### Get All Coupons
 
 ```http
 GET /coupons
@@ -133,12 +125,12 @@ Status `200 OK`
 {
   "coupons": [
     {
-      "id": "uuid",
-      "code": "FIXED-XYZ",
-      "couponType": "FIXED",
-      "discount_amount": 10000,
-      "max_usage": 5,
-      "start_date": "2025-05-22T00:00:00",
+      "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
+      "code": "PERCENTAGE-5B3",
+      "couponType": "PERCENTAGE",
+      "discount_amount": 20.0,
+      "max_usage": 12345,
+      "start_date": "2025-05-25T20:00:56.258815",
       "end_date": "2025-06-01T23:59:59"
     }
   ],
@@ -148,7 +140,7 @@ Status `200 OK`
 
 ---
 
-### Get Valid Coupons
+#### Get Valid Coupons
 
 ```http
 GET /coupons/valid
@@ -165,11 +157,11 @@ Status `200 OK`
   "coupons": [
     {
       "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
-      "code": "PERCENTAGE-ABC",
+      "code": "PERCENTAGE-5B3",
       "couponType": "PERCENTAGE",
-      "discount_amount": 20,
-      "max_usage": 100,
-      "start_date": "2025-05-22T00:00:00",
+      "discount_amount": 20.0,
+      "max_usage": 12345,
+      "start_date": "2025-05-25T20:00:56.258815",
       "end_date": "2025-06-01T23:59:59"
     }
   ],
@@ -179,7 +171,7 @@ Status `200 OK`
 
 ---
 
-### Get Coupon by ID
+#### Get Coupon by ID
 
 ```http
 GET /coupons/{id}
@@ -211,7 +203,7 @@ Status `200 OK`
 
 ---
 
-### Update Coupon
+#### Update Coupon
 
 ```http
 PUT /coupons/{id}
@@ -255,7 +247,7 @@ Status `200 OK`
 
 ---
 
-### Delete Coupon
+#### Delete Coupon
 
 ```http
 DELETE /coupons/{id}
@@ -282,7 +274,7 @@ Status `200 OK`
 
 ---
 
-### Apply Coupon
+#### Apply Coupon
 
 ```http
 POST /coupons/{id}/apply
@@ -320,7 +312,7 @@ Status `200 OK`
 
 ---
 
-### Preview Coupon
+#### Preview Coupon
 
 ```http
 POST /coupons/{id}/preview
