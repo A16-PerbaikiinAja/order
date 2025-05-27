@@ -105,7 +105,7 @@ Status `201 Created`
 
 ```json
 {
-  "id": "uuid",
+  "id": "e94657ab-adf9-458d-9447-0fda7f5d9c0f",
   "code": "PERCENTAGE-ABC",
   "couponType": "PERCENTAGE",
   "discount_amount": 20,
@@ -164,7 +164,7 @@ Status `200 OK`
 {
   "coupons": [
     {
-      "id": "uuid",
+      "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
       "code": "PERCENTAGE-ABC",
       "couponType": "PERCENTAGE",
       "discount_amount": 20,
@@ -199,7 +199,7 @@ Status `200 OK`
 
 ```json
 {
-  "id": "uuid",
+  "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
   "code": "FIXED-XYZ",
   "couponType": "FIXED",
   "discount_amount": 10000,
@@ -243,7 +243,7 @@ Status `200 OK`
 
 ```json
 {
-  "id": "uuid",
+  "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
   "code": "FIXED-XYZ",
   "couponType": "FIXED",
   "discount_amount": 10000,
@@ -310,9 +310,10 @@ Status `200 OK`
 
 ```json
 {
-  "original_price": 100000,
-  "discounted_price": 80000,
-  "coupon_code": "PERCENTAGE-XYZ",
+  "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
+  "coupon_code": "PERCENTAGE-5B3",
+  "original_price": 100000.0,
+  "discounted_price": 80000.0,
   "valid": true
 }
 ```
@@ -347,9 +348,10 @@ Status `200 OK`
 
 ```json
 {
-  "original_price": 100000,
-  "discounted_price": 80000,
-  "coupon_code": "PERCENTAGE-XYZ",
+  "id": "5b3802e7-cdda-4dfd-8ef1-2e2e38639bf1",
+  "coupon_code": "PERCENTAGE-5B3",
+  "original_price": 100000.0,
+  "discounted_price": 80000.0,
   "valid": true
 }
 ```
