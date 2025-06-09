@@ -26,7 +26,7 @@ jobs:
           key: ${{ secrets.EC2_COUPON_KEY }}
           source: "build/libs/*.jar,Dockerfile"
           target: /home/ec2-user/coupon-app
-          strip_components: 2   # hilangkan build/libs
+          strip_components: 2
 
       - name: SSH & deploy
         uses: appleboy/ssh-action@master
@@ -37,26 +37,29 @@ jobs:
           script: |
             set -e
             cd /home/ec2-user/coupon-app
-            
-            # pilih jar yang tidak mengandung "-plain"
+
             JAR_FILE=$(ls -t *.jar | grep -v '\-plain' | head -n 1)
             [ -z "$JAR_FILE" ] && { echo "❌ JAR tidak ditemukan"; exit 1; }
-            
-            rm -f app.jar
-            mv "$JAR_FILE" app.jar
-            
-            # pastikan Docker ada
+            rm -f app.jar && mv "$JAR_FILE" app.jar
+
             if ! command -v docker &>/dev/null; then
               sudo yum -y update
               sudo yum -y install docker
               sudo systemctl start docker
             fi
-            
+
+            # buat .env tanpa spasi awal
+            rm -f .env
+            echo "CORS_ALLOWED_ORIGIN=${{ secrets.CORS_ALLOWED_ORIGIN }}" >> .env
+            echo "DATABASE_URL=${{ secrets.DATABASE_URL }}"           >> .env
+            echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
+            echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}"               >> .env
+
             sudo docker stop coupon-app || true
             sudo docker rm   coupon-app || true
             sudo docker build -t coupon-app .
-            
-            # Jalankan dengan env file
+
             sudo docker run -d -p 80:8080 --name coupon-app \
-            --env-file .env \
-            coupon-app
+              --env-file .env \
+              coupon-app
