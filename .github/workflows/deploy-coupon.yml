@@ -41,9 +41,8 @@ jobs:
           key: ${{ secrets.EC2_COUPON_KEY }}
           script: |
             cd /home/ec2-user/app
-            if ls *.jar 1> /dev/null 2>&1; then
-              mv *.jar app.jar
-            fi
+            JAR_FILE=$(ls *.jar | head -n 1)
+            mv "$JAR_FILE" app.jar
             docker stop coupon-app || true
             docker rm coupon-app || true
             docker build -t coupon-app .
